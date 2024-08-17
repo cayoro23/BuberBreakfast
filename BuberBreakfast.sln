@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberBreakfast", "BuberBrea
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{7D650522-8A9B-4B22-B5AC-28E68B08093C}"
 	ProjectSection(SolutionItems) = preProject
-		Api.md = Api.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
