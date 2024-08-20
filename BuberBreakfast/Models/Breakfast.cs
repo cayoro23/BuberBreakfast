@@ -1,6 +1,6 @@
 ﻿namespace BuberBreakfast.Models;
 
-public class Breakfasts
+public class Breakfast
 {
     public Guid Id { get; }
     public string Name { get; }
@@ -11,7 +11,7 @@ public class Breakfasts
     public List<string> Savory { get; }
     public List<string> Sweet { get; }
 
-    public Breakfasts(
+    public Breakfast(
         Guid id,
         string name,
         string description,
