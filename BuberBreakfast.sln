@@ -3,13 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberBreakfast.Contracts", "BuberBreakfast.Contracts\BuberBreakfast.Contracts.csproj", "{07E9D353-8238-43C6-AC32-17CB11F9CC12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberBreakfast.Contracts", "BuberBreakfast.Contracts\BuberBreakfast.Contracts.csproj", "{07E9D353-8238-43C6-AC32-17CB11F9CC12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberBreakfast", "BuberBreakfast\BuberBreakfast.csproj", "{41307A23-8456-4A29-9775-553C7FCE99DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberBreakfast", "BuberBreakfast\BuberBreakfast.csproj", "{41307A23-8456-4A29-9775-553C7FCE99DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{7D650522-8A9B-4B22-B5AC-28E68B08093C}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Request", "Request", "{B7ECDF78-590E-4321-BD65-56B955933F0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Breakfast", "Breakfast", "{D8BE8115-57F2-4222-B37D-2A431DC5DF34}"
+	ProjectSection(SolutionItems) = preProject
+		CreateBreakfast.http = CreateBreakfast.http
+		DeleteBreakfast.http = DeleteBreakfast.http
+		GetBreakfast.http = GetBreakfast.http
+		UpsertBreakfast.http = UpsertBreakfast.http
 	EndProjectSection
 EndProject
 Global
@@ -29,6 +39,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8BE8115-57F2-4222-B37D-2A431DC5DF34} = {B7ECDF78-590E-4321-BD65-56B955933F0B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE4ADB6F-F5F7-4652-A8C3-9F3709FD0DF2}
