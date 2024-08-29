@@ -24,17 +24,20 @@ public class BreakfastService : IBreakfastService
 
     public ErrorOr<Breakfast> GetBreakfast(Guid id)
     {
-        if(_breakfasts.TryGetValue(id, out var breakfast)){
+        if (_breakfasts.TryGetValue(id, out var breakfast))
+        {
             return breakfast;
         }
 
         return Errors.Breakfast.NotFount;
     }
 
-    public ErrorOr<Updated> UpsertBreakfast(Breakfast breakfast)
+    public ErrorOr<UpsertBreakfast> UpsertBreakfast(Breakfast breakfast)
     {
+        var isNewlyCreated = !_breakfasts.ContainsKey(breakfast.Id);
+
         _breakfasts[breakfast.Id] = breakfast;
 
-        return Result.Updated;
+        return new UpsertBreakfast(isNewlyCreated);
     }
 }

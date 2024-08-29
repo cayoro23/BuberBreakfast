@@ -32,15 +32,10 @@ public class BreakfastsController : ApiController
 
         ErrorOr<Created> createBreakfastRequest = _breakfastService.CreateBreakfast(breakfast);
 
-        if (createBreakfastRequest.IsError)
-        {
-            return Problem(createBreakfastRequest.Errors);
-        }
-
-        return CreatedAtAction(
-            actionName: nameof(GetBreakfasts),
-            routeValues: new { id = breakfast.Id },
-            value: MapBreakfastResponse(breakfast));
+        return createBreakfastRequest.Match(
+            created => CreatedAtGetBreakfast(breakfast),
+            errors => Problem(errors)
+        );
     }
 
     [HttpGet("{id:guid}")]
@@ -66,17 +61,20 @@ public class BreakfastsController : ApiController
             request.Savory,
             request.Sweet);
 
-        _breakfastService.UpsertBreakfast(breakfast);
+        ErrorOr<UpsertBreakfast> upsertBreakfastResult = _breakfastService.UpsertBreakfast(breakfast);
 
-        return NoContent();
+        return upsertBreakfastResult.Match(
+            upserted => upserted.IsNewlyCreated ? CreatedAtGetBreakfast(breakfast) : NoContent(),
+            errors => Problem(errors)
+        );
     }
 
     [HttpDelete("{id:guid}")]
     public IActionResult DeleteBreakfasts(Guid id)
     {
-        ErrorOr<Deleted> deletedResult = _breakfastService.DeleteBreakfast(id);
+        ErrorOr<Deleted> deletedBreakfastResult = _breakfastService.DeleteBreakfast(id);
 
-        return deletedResult.Match(
+        return deletedBreakfastResult.Match(
             deleted => NoContent(),
             errors => Problem(errors)
         );
@@ -94,4 +92,10 @@ public class BreakfastsController : ApiController
                     breakfast.Savory,
                     breakfast.Sweet);
     }
+
+    private CreatedAtActionResult CreatedAtGetBreakfast(Breakfast breakfast)
+            => CreatedAtAction(
+                actionName: nameof(GetBreakfasts),
+                routeValues: new { id = breakfast.Id },
+                value: MapBreakfastResponse(breakfast));
 }
